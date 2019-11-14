@@ -17,3 +17,9 @@ class Emoticon:
     # Draws the emoticon    
     def draw(self):   
         pass
+
+
+
+
+
+

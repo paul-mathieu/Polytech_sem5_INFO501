@@ -17,9 +17,6 @@ class Emoticon:
     #=============================================================================
 
 
-
-
-
     #==========================================================================
     # Constructor
     #==========================================================================    
@@ -92,6 +89,8 @@ class Emoticon:
         self.head(-1)
         self.eye()
         
+        self.mouth()
+        
         #for the buttons
         self.printSquareButtons()
         
@@ -145,7 +144,7 @@ class Emoticon:
         coordL = self.headToArea(self.eyeLeftPosition)
         
         #center
-        coordL[0] -= self.eyeWidth
+        coordL[0] -= self.eyeWidth / 2
         coordL[1] -= self.eyeHeight
         
         #add W and H
@@ -159,7 +158,7 @@ class Emoticon:
         coordR = self.headToArea(self.eyeRightPosition)
         
         #center
-        #coordR[0] -= self.eyeWidth => wrong beacause coord left
+        coordR[0] -= self.eyeWidth / 2 #=> wrong beacause coord left
         coordR[1] -= self.eyeHeight
         
         #add W and H
@@ -167,15 +166,25 @@ class Emoticon:
         coordR.append(self.eyeHeight)
         
         #draw left eye
-        pygame.draw.ellipse(self.generalConfiguration.screen, [255,255,255], coordL)
+        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], coordL)
 
         #draw right eye
-        pygame.draw.ellipse(self.generalConfiguration.screen, [255,255,255], coordR)
+        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], coordR)
 
 
-    def mouth(self, x):
+    def mouth(self, x=0):
         
-        pygame.draw.arc(self.screen, [255,255,255], [centreX - int(80 / 2), centreY + 10, 80, 30], 7*math.pi/6, 11*math.pi/6)
+        coordArc = self.headToArea(self.mouthPosition)
+        
+        #center
+        coordArc[0] -= self.mouthMaxWidth / 2
+        coordArc[1] -= self.mouthMaxHeight 
+        
+        #add W and H
+        coordArc.append(self.mouthMaxWidth)
+        coordArc.append(self.mouthMaxHeight)
+       
+        pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, 7*math.pi/6, 11*math.pi/6)
         
         
 #        print(self.setEmoticonParameters(size).eyeLeftPosition)

@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: lfoul
+@author: MATHIEU Paul - FANTON Kevin
 """
 import pygame
 from Q2GeneralConfiguration import GeneralConfiguration

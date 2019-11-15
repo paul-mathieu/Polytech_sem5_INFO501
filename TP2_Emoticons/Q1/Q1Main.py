@@ -55,7 +55,7 @@ def get_height(generalConfiguration):
                 
 # Calls the main function
 if __name__ == "__main__":
-    main(largeurEcran, hauteurEcran)    
+    main(largeurEcran, hauteurEcran)
     
     
     

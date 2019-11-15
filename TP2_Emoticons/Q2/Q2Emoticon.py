@@ -15,8 +15,11 @@ class Emoticon:
     # Part I - Initialisation
     #=============================================================================
     #=============================================================================
-    
-    
+
+
+
+
+
     #==========================================================================
     # Constructor
     #==========================================================================    
@@ -28,16 +31,51 @@ class Emoticon:
     #==========================================================================
     # Constructor
     #==========================================================================    
-    def headToArea(self):
+
+    def headToArea(self, position):
         
-        #position du centre du nouveau carre
-        x = self.generalConfiguration.screenWidth / 2
-        y = self.generalConfiguration.buttonHeight + self.generalConfiguration.emoticonBorder + self.generalConfiguration.emoticonSize / 2
+        x, y = position
+        t_emo = self.generalConfiguration.emoticonSize
+        t_bout= self.generalConfiguration.buttonHeight
+        t_bord=self.generalConfiguration.emoticonBorder      
+        t_ecran =self.generalConfiguration.screenWidth
+        
+        #position prime
+        new_y = t_bout+t_bord+(t_emo//2)-y
+        new_x = x+(t_ecran//2)
 
         
-        return x, y
+        return [new_x, new_y]
 
+        
+    #==========================================================================
+    # Setter
+    #==========================================================================    
+    def setEmoticonParameters(self, size) :  
+        self.eyeWidth = 0.1*size 
+        self.eyeHeight = 0.15*size
+        self.eyeLeftPosition = [-0.15*size, 0.1*size] 
+        self.eyeRightPosition = [0.15*size, 0.1*size] 
+        self.mouthPosition = [0, -0.25*size]
+        self.mouthMaxHeight = 0.3*size 
+        self.mouthMaxWidth = 0.55*size 
+        self.mouthAngle = math.pi/10 
+        
+        
+        
 
+    #==========================================================================
+    # Color
+    #==========================================================================    
+    def color(self,x):
+        if x<=0:
+            rouge = 255
+            vert = 255 +x*255
+        else:
+            rouge = 255 -x*255
+            vert = 255
+        
+        return (rouge,vert,0)
 
     #=============================================================================
     #=============================================================================
@@ -50,6 +88,9 @@ class Emoticon:
     # Draws on pygame screen      
     #==========================================================================
     def draw(self):
+        
+        self.head(-1)
+        self.eye()
         
         #for the buttons
         self.printSquareButtons()
@@ -75,6 +116,78 @@ class Emoticon:
 
 
 
+    #==========================================================================
+    #Head of the emoticon
+    #==========================================================================
+    def head(self,coeffCouleur):
+        
+        #taille de l'emo
+        taille_emo = self.generalConfiguration.emoticonSize
+        
+        #tracage du cercle
+        pygame.draw.circle(self.generalConfiguration.screen, self.color(coeffCouleur), self.headToArea([0,0]),taille_emo//2)
+        
+        #centre du cercle
+        pygame.draw.circle(self.generalConfiguration.screen, (255,255,255), self.headToArea([0,0]),1)
+
+    #==========================================================================
+    #Eyes of the emoticon
+    #==========================================================================
+    def eye(self):
+        
+        #size of the emo
+        size=self.generalConfiguration.emoticonSize
+        self.setEmoticonParameters(size)
+        
+        #coord left :
+        
+        #coord
+        coordL = self.headToArea(self.eyeLeftPosition)
+        
+        #center
+        coordL[0] -= self.eyeWidth
+        coordL[1] -= self.eyeHeight
+        
+        #add W and H
+        coordL.append(self.eyeWidth)
+        coordL.append(self.eyeHeight)
+        
+        
+        #coord right :
+        
+        #coord
+        coordR = self.headToArea(self.eyeRightPosition)
+        
+        #center
+        #coordR[0] -= self.eyeWidth => wrong beacause coord left
+        coordR[1] -= self.eyeHeight
+        
+        #add W and H
+        coordR.append(self.eyeWidth)
+        coordR.append(self.eyeHeight)
+        
+        #draw left eye
+        pygame.draw.ellipse(self.generalConfiguration.screen, [255,255,255], coordL)
+
+        #draw right eye
+        pygame.draw.ellipse(self.generalConfiguration.screen, [255,255,255], coordR)
+
+
+    def mouth(self, x):
+        
+        pygame.draw.arc(self.screen, [255,255,255], [centreX - int(80 / 2), centreY + 10, 80, 30], 7*math.pi/6, 11*math.pi/6)
+        
+        
+#        print(self.setEmoticonParameters(size).eyeLeftPosition)
+#        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters(size).eyeLeftPosition+[self.setEmoticonParameters(size).eyeWidth]+[self.setEmoticonParameters(size).Height]))
+#        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters.eyeRightPosition)+[self.eyeWidth]+[self.Height])
+      
+        
+        
+        
+        
+        
+
     #=============================================================================
     #=============================================================================
     # Part III - Buttons
@@ -99,6 +212,12 @@ class Emoticon:
 
 
 
+    
+
+            
+    
+        
+          
 
 
 

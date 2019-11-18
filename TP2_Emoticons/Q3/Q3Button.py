@@ -74,6 +74,6 @@ class Button:
     #==========================================================================
 
     def getPosition(self):
-        
+            return [self.generalConfiguration.screenWidth / 2 - self.generalConfiguration.buttonWidth , 0]
    
 

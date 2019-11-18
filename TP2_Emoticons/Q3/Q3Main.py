@@ -9,7 +9,7 @@ from Q3GeneralConfiguration import GeneralConfiguration
 from Q3Button import Button
 
 def main():
- 
+    
     # Creates the general configuration and the sensors
     generalConfiguration = GeneralConfiguration()
 
@@ -17,6 +17,11 @@ def main():
     button = Button()
     # Injects the general configuration in the button
     button.setGeneralConfiguration(generalConfiguration)
+    
+    
+    
+    print(button.getPosition())
+
   
     # Infinite loop    
     while True:

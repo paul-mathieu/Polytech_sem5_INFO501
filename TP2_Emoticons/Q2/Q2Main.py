@@ -9,7 +9,12 @@ from Q2GeneralConfiguration import GeneralConfiguration
 from Q2Emoticon import Emoticon
 
 def main():
- 
+    
+    
+    listeX = [- x / 10 for x in range(10)][::-1] + [x / 10 for x in range(10)] 
+    listeX += listeX[::-1] 
+    listeX *= 100
+    
     # Creates the general configuration and the sensors
     generalConfiguration = GeneralConfiguration()
 
@@ -19,7 +24,8 @@ def main():
     emoticon.setGeneralConfiguration(generalConfiguration)
   
     # Infinite loop    
-    while True:
+#    while True:
+    for x in range(2000):
 
         # Waits for an event
         event = pygame.event.wait()
@@ -30,7 +36,7 @@ def main():
         
         # Draws the emoticon
         elif event.type == pygame.USEREVENT:
-            emoticon.draw()
+            emoticon.draw(listeX[x])
             generalConfiguration.display()
                                   
         elif event.type == pygame.MOUSEBUTTONDOWN:

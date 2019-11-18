@@ -19,6 +19,10 @@ class GeneralConfiguration:
     def __init__(self) :
         self.initPygame()
         
+        # Parameters for the screen
+        self.screenWidth = 1000
+        self.screenHeight = 1200 
+        
         # Parameters for the emoticons        
         self.emoticonSize = 400
         self.emoticonBorder = 20  
@@ -41,7 +45,7 @@ class GeneralConfiguration:
         #Initialization
         pygame.init()
         # Sets the screen size.
-        pygame.display.set_mode((800, 600))    
+        pygame.display.set_mode((self.screenWidth, self.screenHeight))    
         # Sets the timer to check event every 200 ms
         pygame.time.set_timer(pygame.USEREVENT, 200)         
         # Gets pygame screen
@@ -113,8 +117,10 @@ class GeneralConfiguration:
     #==========================================================================    
 
     def draw(self):
+        
         # Clears the surface
         pygame.display.get_surface().fill([0, 0, 0])
+        
         
         pass
  
@@ -125,6 +131,11 @@ class GeneralConfiguration:
     #==========================================================================    
 
     def display(self):
+        
+        # Title for the screen
+        pygame.display.set_caption("Mesure de la Température")
+        
+        
         # Draws on the screen surface
         self.draw()
         

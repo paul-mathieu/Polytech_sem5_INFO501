@@ -73,7 +73,7 @@ class GeneralConfiguration:
     def display(self):
         
         #Titre de la fenêtre
-        pygame.display.set_caption("Mesure de la Température")
+
         
     
         

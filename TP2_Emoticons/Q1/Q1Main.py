@@ -21,10 +21,11 @@ def main(largeurEcran, hauteurEcran):
      
     
     #print({'Largeur' : get_width(generalConfiguration), 'hauteur' : get_height(generalConfiguration)})
-
-
+    listeX = [- x / 10 for x in range(10)][::-1] + [x / 10 for x in range(10)] 
+    listeX *= 100
+    
     # Infinite loop    
-    while True:
+    for x in range(2000):
 
         # Waits for an event
         event = pygame.event.wait()

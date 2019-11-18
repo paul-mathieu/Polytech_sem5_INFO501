@@ -10,6 +10,15 @@ from Q5GeneralConfiguration import GeneralConfiguration
 from Q5Sensor import Sensor
              
 def main():
+    
+    
+    
+    listeX = [- x / 10 for x in range(10)][::-1] + [x / 10 for x in range(10)] 
+    listeX += listeX[::-1] 
+    listeX *= 100
+    
+    
+    
  
     # Creates the general configuration and the sensors
     generalConfiguration = GeneralConfiguration()
@@ -22,8 +31,21 @@ def main():
         )
     )
 
+
+
+    # Creates an emoticon
+    emoticon = Emoticon()
+    # Injects the general configuration in the emoticon
+    emoticon.setGeneralConfiguration(generalConfiguration)
+
+
+
+
+
+
     # Infinite loop    
-    while True:
+#    while True:
+    for x in range(2000):
 
         # Waits for an event
         event = pygame.event.wait()
@@ -34,6 +56,7 @@ def main():
         
         # Displays the selected sensor
         elif event.type == pygame.USEREVENT: 
+            self.draw(listeX[x])
             generalConfiguration.display()
                                   
         elif event.type == pygame.MOUSEBUTTONDOWN:

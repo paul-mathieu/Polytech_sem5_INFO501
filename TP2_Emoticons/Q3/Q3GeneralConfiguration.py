@@ -7,24 +7,34 @@ Created on Thu Nov 16 19:47:50 2017
 import pygame
 
 class GeneralConfiguration:
+
+
+    #==========================================================================
     # Constructor
+    #==========================================================================    
     def __init__(self) :
+        
+        self.screenWidth = 1000
+        self.screenHeight = 1200
+        
         self.initPygame()
         
         # Parameters for the emoticons        
-        self.emoticonSize = 400
-        self.emoticonBorder = 20  
+        self.emoticonSize = 500
+        self.emoticonBorder = 200 
         
         # Parameters for the buttons
         self.buttonWidth = 150
         self.buttonHeight = 80
+
+
 
     # Initializes pygame
     def initPygame(self): 
         #Initialization
         pygame.init()
         # Sets the screen size.
-        pygame.display.set_mode((800, 600))    
+        pygame.display.set_mode((self.screenWidth, self.screenHeight))    
         # Sets the timer to check event every 200 ms
         pygame.time.set_timer(pygame.USEREVENT, 200)
         # Gets pygame screen

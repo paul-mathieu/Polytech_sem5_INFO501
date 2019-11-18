@@ -45,6 +45,44 @@ class Sensor:
             
     # Gets the transformed value
     def getTransformedValue(self):
-        pass
-                   
         
+        #Temperature value
+        temp = self.read()
+        seuils = self.thresholds
+        
+        #if inf to seuil min
+        if float(temp) <= seuils[0]:
+            return -1
+
+        #if equal to center seuil
+        if float(temp) == seuils[1]:
+            return 0
+                
+        #if sup to seuil max
+        if float(temp) >= seuils[2]:
+            return 1
+
+
+
+        #if sup to center  
+        if float(temp) > seuils[1]:
+            return .5 * temp - 11
+
+        #if inf to center
+        if float(temp) <  seuils[1]:
+            return temp - 22
+        
+
+
+
+sensor = Sensor('https://www.polytech.univ-smb.fr/apps/myreader/capteur.php?capteur=epua_b204_clim', "Clim B204", [20, 22, 23])
+print(sensor.read())
+print(sensor.getLabel())
+print(sensor.getTransformedValue())
+
+
+
+
+
+
+

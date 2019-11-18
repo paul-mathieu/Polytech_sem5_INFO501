@@ -36,6 +36,7 @@ def main():
         # Draws the button
         elif event.type == pygame.USEREVENT:
             button.draw()
+            button.draw_lines(['', 'Temp. Toit', '', '38.4'])
             generalConfiguration.display()
                                   
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -45,3 +46,6 @@ def main():
 # Calls the main function
 if __name__ == "__main__":
     main()    
+    
+    
+    

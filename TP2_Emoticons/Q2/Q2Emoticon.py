@@ -116,6 +116,22 @@ class Emoticon:
 
 
     #==========================================================================
+    # Square for the buttons
+    #==========================================================================
+
+    def printSquareButtons(self):
+        
+        #carre pour l'emoticonne
+        widthRect = self.generalConfiguration.screenWidth
+        heightRect = self.generalConfiguration.buttonHeight
+        x = 0
+        y = 0
+
+        pygame.draw.rect(self.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect),1  )
+
+
+
+    #==========================================================================
     #Head of the emoticon
     #==========================================================================
     def head(self, coeffCouleur):
@@ -228,32 +244,7 @@ class Emoticon:
         
         
         
-
-    #=============================================================================
-    #=============================================================================
-    # Part III - Buttons
-    #=============================================================================
-    #=============================================================================
-
-
-        
-    #==========================================================================
-    # 
-    #==========================================================================
-
-    def printSquareButtons(self):
-        
-        #carre pour l'emoticonne
-        widthRect = self.generalConfiguration.screenWidth
-        heightRect = self.generalConfiguration.buttonHeight
-        x = 0
-        y = 0
-
-        pygame.draw.rect(self.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect),1  )
-
-
-
-    
+ 
 
             
     

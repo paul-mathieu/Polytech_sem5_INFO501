@@ -84,12 +84,12 @@ class Emoticon:
     #==========================================================================
     # Draws on pygame screen      
     #==========================================================================
-    def draw(self):
+    def draw(self, x):
         
-        self.head(-1)
+        self.head(x)
         self.eye()
         
-        self.mouth()
+        self.mouth(x)
         
         #for the buttons
         self.printSquareButtons()
@@ -118,7 +118,7 @@ class Emoticon:
     #==========================================================================
     #Head of the emoticon
     #==========================================================================
-    def head(self,coeffCouleur):
+    def head(self, coeffCouleur):
         
         #taille de l'emo
         taille_emo = self.generalConfiguration.emoticonSize
@@ -172,19 +172,51 @@ class Emoticon:
         pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], coordR)
 
 
-    def mouth(self, x=0):
+    def mouth(self, x):
         
+        coordCentre = self.headToArea(self.mouthPosition)
         coordArc = self.headToArea(self.mouthPosition)
+        coordLine = self.headToArea(self.mouthPosition)
+        
+        
+        heightMouth = abs(x) * self.mouthMaxHeight
         
         #center
         coordArc[0] -= self.mouthMaxWidth / 2
-        coordArc[1] -= self.mouthMaxHeight 
         
         #add W and H
         coordArc.append(self.mouthMaxWidth)
-        coordArc.append(self.mouthMaxHeight)
-       
-        pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, 7*math.pi/6, 11*math.pi/6)
+        coordArc.append(heightMouth)
+        
+        
+        #coord if line
+        coordLine[0] -= self.mouthMaxWidth / 2
+
+        
+        cMouth1 = [coordLine[0], coordLine[1]]
+        cMouth2 = [coordLine[0] + self.mouthMaxWidth, coordLine[1]]
+        
+        #draw mouth
+        
+        
+        
+        #if line
+        if -.15 < x < .15:
+            #print(coordArc[0:2], coordArc[2:4])
+            pygame.draw.line(self.generalConfiguration.screen, [0,0,0], cMouth1, cMouth2)
+            
+        elif -.15 > x :
+            
+            coordArc[1] = coordCentre[0] + self.mouthMaxHeight
+            coordArc[3] = heightMouth
+            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi/10, math.pi - math.pi/10)
+        
+        
+        else:
+            
+            coordArc[1] = coordCentre[0] - heightMouth + self.mouthMaxHeight
+            coordArc[3] = heightMouth
+            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
         
         
 #        print(self.setEmoticonParameters(size).eyeLeftPosition)

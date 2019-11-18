@@ -73,4 +73,25 @@ class GeneralConfiguration:
         # Updates the display and clears new timer events
         pygame.display.flip()
         pygame.event.clear(pygame.USEREVENT)
-               
+
+
+
+
+#
+#Question 5.a) 
+#Analyser les fichiers fournis dans le dossier Q5. Dans la fonction main() du fichier
+#Q5Main.py, on a ajouté un capteur à l’objet generalConfiguration à l’aide de la méthode
+#addSensor(). 
+#Expliquer le fonctionnement de cette méthode. 
+#Que vaut l’attribut sensors de la classe GeneralConfiguration après cet ajout ?
+#
+#Cette méthode permet d'ajouter un attribut à la classe generalConfiguration, qui est par
+#défaut optionnel. Elle permet ainsi de générer les button et emoticon correspondant, avec
+#des valeurs correctes.
+#
+#L'attribut sensors sera alors une liste ayant pour valeur 
+#
+
+
+
+

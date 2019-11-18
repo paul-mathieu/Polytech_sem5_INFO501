@@ -47,7 +47,10 @@ class GeneralConfiguration:
     # Draws on pygame screen      
     def draw(self):
         pass
-            
+
+
+
+
     # Displays   
     def display(self):
         # Draws on the screen surface

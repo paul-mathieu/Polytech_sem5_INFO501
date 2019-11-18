@@ -9,6 +9,10 @@ import http
 import urllib
 import ssl
 
+
+import numpy as np
+
+
 class Sensor:
     # Constructor
     def __init__(self, url, label, thresholds):
@@ -47,42 +51,59 @@ class Sensor:
     def getTransformedValue(self):
         
         #Temperature value
-        temp = self.read()
+        temp = float(self.read())
         seuils = self.thresholds
-        
+                
         #if inf to seuil min
-        if float(temp) <= seuils[0]:
+        if temp <= seuils[0]:
             return -1
 
         #if equal to center seuil
-        if float(temp) == seuils[1]:
+        if temp == seuils[1]:
             return 0
                 
         #if sup to seuil max
-        if float(temp) >= seuils[2]:
+        if temp >= seuils[2]:
             return 1
 
-
-
-        #if sup to center  
-        if float(temp) > seuils[1]:
-            return .5 * temp - 11
-
-        #if inf to center
-        if float(temp) <  seuils[1]:
-            return temp - 22
+        """
+        With this 3 equations :
+            - y1 = a1 * x1 + b1
+            - y2 = a2 * x2 + b2
+            - y3 = a3 * x3 + b3
+            
+        And with :
+            - a = (y2-y1) / (x2-x1)
+            - b = y1 - a * x1
+        """
         
+        #if inf to center
+        if temp <  seuils[1]:
+            a, b = calculerAffine(x1 = seuils[0], x2 = seuils[1], y1 = -1, y2 = 0)
+            return a * temp + b
+        
+        #if sup to center  
+        if temp > seuils[1]:
+            a, b = calculerAffine(x1 = seuils[1], x2 = seuils[2], y1 = 0, y2 = 1)
+            return a * temp + b
+ 
 
 
-
-sensor = Sensor('https://www.polytech.univ-smb.fr/apps/myreader/capteur.php?capteur=epua_b204_clim', "Clim B204", [20, 22, 23])
+sensor = Sensor('https://www.polytech.univ-smb.fr/apps/myreader/capteur.php?capteur=epua_b204_clim', 'Clim B204', [20, 22, 23])
 print(sensor.read())
 print(sensor.getLabel())
 print(sensor.getTransformedValue())
 
 
 
+def calculerAffine(x1,x2,y1,y2):
+    a = (y2-y1) / (x2-x1)
+    b = y2 - a*x2
+    return a, b
 
 
 
 
+
+
+        

@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: lfoul
+@author: Paul Mathieu
 """
 import pygame
 from Q4GeneralConfiguration import GeneralConfiguration

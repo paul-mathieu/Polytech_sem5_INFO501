@@ -56,7 +56,7 @@ def main():
         
         # Displays the selected sensor
         elif event.type == pygame.USEREVENT: 
-            self.draw(listeX[x])
+            emoticon.draw(listeX[x])
             generalConfiguration.display()
                                   
         elif event.type == pygame.MOUSEBUTTONDOWN:

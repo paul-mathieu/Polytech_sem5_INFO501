@@ -47,7 +47,7 @@ def main():
         # Displays the selected sensor
         elif event.type == pygame.USEREVENT: 
             
-            
+            generalConfiguration.draw()
             
             generalConfiguration.display()
                                   

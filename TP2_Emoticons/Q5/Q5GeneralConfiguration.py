@@ -25,7 +25,7 @@ class GeneralConfiguration:
         
         # Parameters for the emoticons        
         self.emoticonSize = 400
-        self.emoticonBorder = 20  
+        self.emoticonBorder = 80  
         
         # Parameters for the buttons
         self.buttonWidth = 150
@@ -122,9 +122,7 @@ class GeneralConfiguration:
         # Clears the surface
         pygame.display.get_surface().fill([0, 0, 0])
         
-        emoticon = Emoticon()
-        emoticon.setGeneralConfiguration(GeneralConfiguration())
-        self.sensors[0].drawEmoticon()
+        self.sensors[self.selectedSensor].drawEmoticon()
  
 
             

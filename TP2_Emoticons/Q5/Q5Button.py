@@ -23,25 +23,25 @@ class Button:
 
     def draw(self): 
         
-        print("a")
+#        print("a")
         
         #draw all buttons :
         #first pos = wScreen / 2 - ( len(sensor) * wButton ) / 2
-        buttonWidth = self.sensor.generalConfiguration.buttonWidth
-        buttonHeight = self.sensor.generalConfiguration.buttonHeight
-        print(str(buttonWidth))
+#        buttonWidth = self.sensor.generalConfiguration.buttonWidth
+#        buttonHeight = self.sensor.generalConfiguration.buttonHeight
+#        print(str(buttonWidth))
         
-        valX = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * buttonWidth) / 2
+#        valX = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * buttonWidth) / 2
         
-        print(str(valX))
+#        print(str(valX))
         
         
         for sensor in self.sensor.generalConfiguration.sensors:
             
-            pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, 0, buttonWidth, buttonHeight), 1)
-            self.draw_lines(['', 'Temp. Toit', '', '38.4'], valX)
+#            pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, 0, buttonWidth, buttonHeight), 1)
+#            self.draw_lines(['', 'Temp. Toit', '', '38.4'], valX)
         
-            valX += buttonWidth
+#            valX += buttonWidth
     
 
     #==========================================================================

@@ -21,13 +21,13 @@ class Emoticon:
     #=============================================================================
     #=============================================================================
 
-
-    #==========================================================================
-    # Constructor
-    #==========================================================================    
-    def setGeneralConfiguration(self, generalConfiguration):
-        self.generalConfiguration = generalConfiguration
-
+#
+#    #==========================================================================
+#    # Constructor
+#    #==========================================================================    
+#    def setGeneralConfiguration(self, generalConfiguration):
+#        self.sensor.generalConfiguration = generalConfiguration
+#
 
 
     #==========================================================================
@@ -37,10 +37,10 @@ class Emoticon:
     def headToArea(self, position):
         
         x, y = position
-        t_emo = self.generalConfiguration.emoticonSize
-        t_bout= self.generalConfiguration.buttonHeight
-        t_bord=self.generalConfiguration.emoticonBorder      
-        t_ecran =self.generalConfiguration.screenWidth
+        t_emo = self.sensor.generalConfiguration.emoticonSize
+        t_bout= self.sensor.generalConfiguration.buttonHeight
+        t_bord=self.sensor.generalConfiguration.emoticonBorder      
+        t_ecran =self.sensor.generalConfiguration.screenWidth
         
         #position prime
         new_y = t_bout+t_bord+(t_emo//2)-y
@@ -108,12 +108,13 @@ class Emoticon:
     def printSquareEmoticon(self):
         
         #carre pour l'emoticonne
-        widthRect = self.generalConfiguration.emoticonSize
-        heightRect = self.generalConfiguration.emoticonSize
-        x = self.generalConfiguration.screenWidth / 2 - widthRect / 2
-        y = self.generalConfiguration.buttonHeight + self.generalConfiguration.emoticonBorder
+        widthRect = self.sensor.generalConfiguration.emoticonSize
+        heightRect = self.sensor.generalConfiguration.emoticonSize
+        x = self.sensor.generalConfiguration.screenWidth / 2 - widthRect / 2
+        y = self.sensor.generalConfiguration.buttonHeight + self.sensor.generalConfiguration.emoticonBorder
+#        print(str(self.sensor.generalConfiguration.buttonHeight))
 
-        pygame.draw.rect(self.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect), 1)
+        pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect), 1)
         
         #dessin de l'emoticonne
         #self.draw()    
@@ -127,12 +128,12 @@ class Emoticon:
     def printSquareButtons(self):
         
         #carre pour l'emoticonne
-        widthRect = self.generalConfiguration.screenWidth
-        heightRect = self.generalConfiguration.buttonHeight
+        widthRect = self.sensor.generalConfiguration.screenWidth
+        heightRect = self.sensor.generalConfiguration.buttonHeight
         x = 0
         y = 0
 
-        pygame.draw.rect(self.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect),1  )
+        pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect),1  )
 
 
 
@@ -142,22 +143,21 @@ class Emoticon:
     def head(self, coeffCouleur):
         
         #taille de l'emo
-        taille_emo = self.generalConfiguration.emoticonSize
+        taille_emo = self.sensor.generalConfiguration.emoticonSize
         
         #tracage du cercle
-        pygame.draw.circle(self.generalConfiguration.screen, self.color(coeffCouleur), self.headToArea([0,0]),taille_emo//2)
+        pygame.draw.circle(self.sensor.generalConfiguration.screen, self.color(coeffCouleur), self.headToArea([0,0]),taille_emo//2)
         
         #centre du cercle
-        pygame.draw.circle(self.generalConfiguration.screen, (255,255,255), self.headToArea([0,0]),1)
+        pygame.draw.circle(self.sensor.generalConfiguration.screen, (255,255,255), self.headToArea([0,0]),1)
 
     #==========================================================================
     #Eyes of the emoticon
     #==========================================================================
     def eye(self):
         
-        #size of the emo
-        size=self.generalConfiguration.emoticonSize
-        self.setEmoticonParameters(size)
+        #size of the emoticon        
+        self.setEmoticonParameters(self.sensor.generalConfiguration.emoticonSize)
         
         #coord left :
         
@@ -187,14 +187,15 @@ class Emoticon:
         coordR.append(self.eyeHeight)
         
         #draw left eye
-        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], coordL)
+        pygame.draw.ellipse(self.sensor.generalConfiguration.screen, [0,0,0], coordL)
 
         #draw right eye
-        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], coordR)
+        pygame.draw.ellipse(self.sensor.generalConfiguration.screen, [0,0,0], coordR)
 
 
     def mouth(self, x):
         
+#        print("test")
         coordCentre = self.headToArea(self.mouthPosition)
         coordArc = self.headToArea(self.mouthPosition)
         coordLine = self.headToArea(self.mouthPosition)
@@ -219,29 +220,29 @@ class Emoticon:
         
         #draw mouth
         
-        
+        print(str(coordArc[1]))
         
         #if line
         if -.15 < x < .15:
             #print(coordArc[0:2], coordArc[2:4])
-            pygame.draw.line(self.generalConfiguration.screen, [0,0,0], cMouth1, cMouth2)
+            pygame.draw.line(self.sensor.generalConfiguration.screen, [0,0,0], cMouth1, cMouth2)
             
         elif -.15 > x :
             
-            coordArc[1] = coordCentre[0] + self.mouthMaxHeight
+            coordArc[1] = coordCentre[1] + self.mouthMaxHeight
             coordArc[3] = heightMouth
-            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi/10, math.pi - math.pi/10)
+            pygame.draw.arc(self.sensor.generalConfiguration.screen, [0,0,0], coordArc, math.pi/10, math.pi - math.pi/10)
         
         
         else:
             
-            coordArc[1] = coordCentre[0] - heightMouth + self.mouthMaxHeight
+            coordArc[1] = coordCentre[1] - heightMouth + self.mouthMaxHeight
             coordArc[3] = heightMouth
-            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
+            pygame.draw.arc(self.sensor.generalConfiguration.screen, [255,255,255], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
         
         
 #        print(self.setEmoticonParameters(size).eyeLeftPosition)
-#        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters(size).eyeLeftPosition+[self.setEmoticonParameters(size).eyeWidth]+[self.setEmoticonParameters(size).Height]))
-#        pygame.draw.ellipse(self.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters.eyeRightPosition)+[self.eyeWidth]+[self.Height])
+#        pygame.draw.ellipse(self.sensor.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters(size).eyeLeftPosition+[self.setEmoticonParameters(size).eyeWidth]+[self.setEmoticonParameters(size).Height]))
+#        pygame.draw.ellipse(self.sensor.generalConfiguration.screen, [0,0,0], self.headToArea(self.setEmoticonParameters.eyeRightPosition)+[self.eyeWidth]+[self.Height])
       
 

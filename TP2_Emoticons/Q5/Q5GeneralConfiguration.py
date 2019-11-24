@@ -45,7 +45,7 @@ class GeneralConfiguration:
         #Initialization
         pygame.init()
         # Sets the screen size.
-        pygame.display.set_mode((self.screenWidth, self.screenHeight))    
+        pygame.display.set_mode((1000,1200))    
         # Sets the timer to check event every 200 ms
         pygame.time.set_timer(pygame.USEREVENT, 200)         
         # Gets pygame screen
@@ -79,7 +79,8 @@ class GeneralConfiguration:
     def getSelectedSensor(self):
         return self.selectedSensor
         
-        
+    def getScreenParameters(self):
+        return self.screenWidth, self.screenHeight
         
     #==========================================================================
     # Adds a sensor 
@@ -121,8 +122,9 @@ class GeneralConfiguration:
         # Clears the surface
         pygame.display.get_surface().fill([0, 0, 0])
         
-        
-        self.
+        emoticon = Emoticon()
+        emoticon.setGeneralConfiguration(GeneralConfiguration())
+        self.sensors[0].drawEmoticon()
  
 
             

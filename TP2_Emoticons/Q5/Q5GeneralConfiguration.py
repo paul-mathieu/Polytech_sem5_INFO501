@@ -122,7 +122,7 @@ class GeneralConfiguration:
         pygame.display.get_surface().fill([0, 0, 0])
         
         
-        pass
+        self.
  
 
             

@@ -214,6 +214,7 @@ class Emoticon:
         
         #draw mouth
         
+        print(str(coordArc[1]))
         
         
         #if line

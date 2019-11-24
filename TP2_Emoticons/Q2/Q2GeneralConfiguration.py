@@ -43,7 +43,8 @@ class GeneralConfiguration:
         #Initialization
         pygame.init()
         # Sets the screen size.
-        pygame.display.set_mode((self.screenWidth, self.screenHeight))    
+        pygame.display.set_mode((self.screenWidth, self.screenHeight))
+#        print(str(self.screenWidth) + " - " + str(self.screenHeight))
         # Sets the timer to check event every 200 ms
         pygame.time.set_timer(pygame.USEREVENT, 200)
         # Gets pygame screen

@@ -12,7 +12,7 @@ def main():
     
     
     listeX = [- x / 10 for x in range(10)][::-1] + [x / 10 for x in range(10)] 
-    listeX += listeX[::-1] 
+#    listeX += listeX[::-1] 
     listeX *= 100
     
     # Creates the general configuration and the sensors

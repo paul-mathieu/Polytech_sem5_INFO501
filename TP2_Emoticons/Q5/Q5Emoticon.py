@@ -97,10 +97,10 @@ class Emoticon:
         self.mouth(x)
         
         #for the buttons
-        self.printSquareButtons()
+#        self.printSquareButtons()
         
         #for the emoticon
-        self.printSquareEmoticon()        
+#        self.printSquareEmoticon()        
     
     #==========================================================================
     #Square for the emoticon

@@ -30,9 +30,9 @@ def main():
     generalConfiguration.addSensor(Sensor(initURL + 'epua_toiture', 'Temp. Clim B204', [30, 35, 40]))
     generalConfiguration.addSensor(Sensor(initURL + 'epua_onduleur1_watts', 'Temp. Clim B204', [10000, 12000, 15000]))
     
-    print(str(generalConfiguration.sensors))
+#    print(str(generalConfiguration.sensors))
 
-
+    print('a')
 
     # Infinite loop    
     while True:

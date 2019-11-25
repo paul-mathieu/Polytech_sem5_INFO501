@@ -106,7 +106,7 @@ class Sensor:
     def drawEmoticon(self):
 #        print(str(self.getTransformedValue()))
         self.emoticon.draw(self.getTransformedValue())
-        
+#        print(str(self.sensorId))
 
     # Draws the button for this sensor
     def drawButton(self, valX):

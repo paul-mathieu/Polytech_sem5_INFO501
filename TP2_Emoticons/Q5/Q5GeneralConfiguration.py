@@ -20,12 +20,13 @@ class GeneralConfiguration:
         self.initPygame()
         
         # Parameters for the screen
-        self.screenWidth = 1000
+        self.screenWidth = 850
         self.screenHeight = 1200 
         
         # Parameters for the emoticons        
         self.emoticonSize = 400
         self.emoticonBorder = 80  
+        self.emoticonBorderInMatrix = 3        
         
         # Parameters for the buttons
         self.buttonWidth = 150
@@ -45,7 +46,7 @@ class GeneralConfiguration:
         #Initialization
         pygame.init()
         # Sets the screen size.
-        pygame.display.set_mode((1000,1200))    
+        pygame.display.set_mode((850, 1200))    
         # Sets the timer to check event every 200 ms
         pygame.time.set_timer(pygame.USEREVENT, 200)         
         # Gets pygame screen
@@ -100,8 +101,16 @@ class GeneralConfiguration:
     #==========================================================================    
 
     def positionToSensorId(self, position):
-        pass
-
+        
+        for sensor in self.sensors:
+            
+            positionButton = sensor.button.getPosition()
+            
+            if positionButton[0] <= position[0] <= positionButton[2] and positionButton[1] <= position[1] <= positionButton[3]:
+                
+                return sensor.sensorId
+        
+        return None
 
 
     #==========================================================================
@@ -109,7 +118,34 @@ class GeneralConfiguration:
     #==========================================================================    
 
     def checkIfSensorChanged(self, eventPosition):
-        pass
+        
+        if self.positionToSensorId(eventPosition) != self.selectedSensor and self.positionToSensorId(eventPosition) != None:
+            self.selectedSensor = self.positionToSensorId(eventPosition)
+
+
+
+
+
+
+
+    #==========================================================================
+    # Muximum number of button per line
+    #==========================================================================    
+    def maxButtonsPerLine(self):
+        
+        return self.screenWidth // self.buttonWidth
+
+
+    #==========================================================================
+    # Muximum number of button per line
+    #==========================================================================    
+    def buttonsCountOnLine(self, line):
+        
+        return list(map(lambda x : x if x > 0 else 0, [len(self.sensors) - self.maxButtonsPerLine() * (line - 1)]))[0]
+
+
+
+
 
 
     
@@ -146,7 +182,7 @@ class GeneralConfiguration:
     def display(self):
         
         # Title for the screen
-        pygame.display.set_caption("Mesure de la Température")
+        pygame.display.set_caption("Mesure de la Température - " + self.sensors[self.selectedSensor].getLabel())
         
         
         # Draws on the screen surface

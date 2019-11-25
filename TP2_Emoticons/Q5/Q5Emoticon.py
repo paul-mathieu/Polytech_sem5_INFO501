@@ -132,7 +132,7 @@ class Emoticon:
         heightRect = self.sensor.generalConfiguration.buttonHeight
         x = 0
         y = 0
-
+        
         pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (x, y, widthRect, heightRect),1  )
 
 
@@ -148,8 +148,8 @@ class Emoticon:
         #tracage du cercle
         pygame.draw.circle(self.sensor.generalConfiguration.screen, self.color(coeffCouleur), self.headToArea([0,0]),taille_emo//2)
         
-        #centre du cercle
-        pygame.draw.circle(self.sensor.generalConfiguration.screen, (255,255,255), self.headToArea([0,0]),1)
+        #centre du cercle = noze for the button
+#        pygame.draw.circle(self.sensor.generalConfiguration.screen, (255,255,255), self.headToArea([0,0]),1)
 
     #==========================================================================
     #Eyes of the emoticon
@@ -203,10 +203,10 @@ class Emoticon:
         
         heightMouth = abs(x) * self.mouthMaxHeight
         
-        #center
+        # x1 : center
         coordArc[0] -= self.mouthMaxWidth / 2
         
-        #add W and H
+        #add W and H -> coordArc[2:4]
         coordArc.append(self.mouthMaxWidth)
         coordArc.append(heightMouth)
         
@@ -229,16 +229,16 @@ class Emoticon:
             
         elif -.15 > x :
             
-            coordArc[1] = coordCentre[1] + self.mouthMaxHeight
+            coordArc[1] = coordCentre[1] 
             coordArc[3] = heightMouth
             pygame.draw.arc(self.sensor.generalConfiguration.screen, [0,0,0], coordArc, math.pi/10, math.pi - math.pi/10)
         
         
         else:
             
-            coordArc[1] = coordCentre[1] - heightMouth + self.mouthMaxHeight
+            coordArc[1] = coordCentre[1] - heightMouth
             coordArc[3] = heightMouth
-            pygame.draw.arc(self.sensor.generalConfiguration.screen, [255,255,255], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
+            pygame.draw.arc(self.sensor.generalConfiguration.screen, [0,0,0], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
         
         
 #        print(self.setEmoticonParameters(size).eyeLeftPosition)

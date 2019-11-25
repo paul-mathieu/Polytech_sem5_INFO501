@@ -25,14 +25,14 @@ def main():
     generalConfiguration = GeneralConfiguration()
 
     generalConfiguration.addSensor(Sensor(initURL + 'epua_b204_clim', 'Temp. Clim B204', [20, 22, 23]))
-    generalConfiguration.addSensor(Sensor(initURL + 'epua_b204_coursive', 'Temp. Clim B204', [20, 22, 23]))
-    generalConfiguration.addSensor(Sensor(initURL + 'epua_b204_centre', 'Temp. Clim B204', [20, 22, 23]))
-    generalConfiguration.addSensor(Sensor(initURL + 'epua_toiture', 'Temp. Clim B204', [30, 35, 40]))
-    generalConfiguration.addSensor(Sensor(initURL + 'epua_onduleur1_watts', 'Temp. Clim B204', [10000, 12000, 15000]))
+    generalConfiguration.addSensor(Sensor(initURL + 'epua_b204_coursive', 'Temp. Coursive B204', [20, 22, 23]))
+    generalConfiguration.addSensor(Sensor(initURL + 'epua_b204_centre', 'Temp. Centre B204', [20, 22, 23]))
+    generalConfiguration.addSensor(Sensor(initURL + 'epua_toiture', 'Temp. Toiture B204', [30, 35, 40]))
+    generalConfiguration.addSensor(Sensor(initURL + 'epua_onduleur1_watts', 'Puiss. Onduleur', [10000, 12000, 15000]))
     
 #    print(str(generalConfiguration.sensors))
 
-    print('a')
+#    print('a')
 
     # Infinite loop    
     while True:

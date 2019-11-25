@@ -121,10 +121,23 @@ class GeneralConfiguration:
         
         # Clears the surface
         pygame.display.get_surface().fill([0, 0, 0])
+
+        # Coords of x value for the position of the left corner on x
+        buttonWidth = self.buttonWidth
+        valX = self.screenWidth / 2 - (len(self.sensors) * buttonWidth) / 2
+
+
         
         self.sensors[self.selectedSensor].drawEmoticon()
-#        self.drawButton()
 
+
+        
+        for sensor in self.sensors:
+            
+            sensor.drawButton(valX)
+
+            valX += buttonWidth
+            
             
     #==========================================================================
     # Displays

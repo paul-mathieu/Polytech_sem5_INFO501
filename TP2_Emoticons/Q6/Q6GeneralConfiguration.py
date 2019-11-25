@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: lfoul
+@author: FANTON - MATHIEU
 """
 
 import pygame
@@ -25,7 +25,7 @@ class GeneralConfiguration:
         
         # Parameters for the emoticons        
         self.emoticonSize = 400
-        self.emoticonBorder = 80  
+        self.emoticonBorder = 100  
         self.emoticonBorderInMatrix = 3        
         
         # Parameters for the buttons
@@ -105,6 +105,7 @@ class GeneralConfiguration:
         for sensor in self.sensors:
             
             positionButton = sensor.button.getPosition()
+#            print(str(positionButton))
             
             if positionButton[0] <= position[0] <= positionButton[2] and positionButton[1] <= position[1] <= positionButton[3]:
                 
@@ -161,20 +162,35 @@ class GeneralConfiguration:
 
         # Coords of x value for the position of the left corner on x
         buttonWidth = self.buttonWidth
-        valX = self.screenWidth / 2 - (len(self.sensors) * buttonWidth) / 2
+       
 
 
         
         self.sensors[self.selectedSensor].drawEmoticon()
-
-
         
-        for sensor in self.sensors:
+#        print(len(self.sensors))
+        
+        posSensor = 0
+        valY = 1
+        for row in range(len(self.sensors) // self.maxButtonsPerLine() + 1):
             
-            sensor.drawButton(valX)
-
-            valX += buttonWidth
+#            print(str(row))
             
+            if len(self.sensors) <= self.maxButtonsPerLine():
+                valX = self.screenWidth / 2 - (len(self.sensors) * buttonWidth) / 2 
+            else:
+                valX = self.screenWidth / 2 - (5 * buttonWidth) / 2
+            
+            for sensor in self.sensors[ posSensor : posSensor+self.maxButtonsPerLine() ]:
+                
+                sensor.drawButton(valX, valY)
+    
+                valX += buttonWidth
+            
+            valY += self.buttonHeight
+            posSensor += self.maxButtonsPerLine()
+            
+#            print(str(valY))
             
     #==========================================================================
     # Displays

@@ -74,7 +74,16 @@ class Button:
     #==========================================================================
 
     def getPosition(self):
-            return [self.sensor.generalConfiguration.screenWidth / 2 - self.sensor.generalConfiguration.buttonWidth , 0]
+        
+        xIni = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * self.sensor.generalConfiguration.buttonWidth) / 2
+        x =  xIni + self.sensor.generalConfiguration.sensors.index(self.sensor) * self.sensor.generalConfiguration.buttonWidth
+        
+        xLeftTop = x
+        yLeftTop = 1
+        xRightBottom = x + self.sensor.generalConfiguration.buttonWidth
+        yRightBottom = 1 + self.sensor.generalConfiguration.buttonHeight
+        
+        return [xLeftTop, yLeftTop, xRightBottom, yRightBottom]
   
     
     #==========================================================================

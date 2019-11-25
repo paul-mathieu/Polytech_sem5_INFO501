@@ -21,27 +21,24 @@ class Button:
     #==========================================================================
  
 
-    def draw(self): 
+    def draw(self, valX): 
         
 #        print("a")
         
         #draw all buttons :
         #first pos = wScreen / 2 - ( len(sensor) * wButton ) / 2
-#        buttonWidth = self.sensor.generalConfiguration.buttonWidth
-#        buttonHeight = self.sensor.generalConfiguration.buttonHeight
+        buttonWidth = self.sensor.generalConfiguration.buttonWidth
+        buttonHeight = self.sensor.generalConfiguration.buttonHeight
 #        print(str(buttonWidth))
         
 #        valX = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * buttonWidth) / 2
         
 #        print(str(valX))
         
+        pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, 0, buttonWidth, buttonHeight), 1)
+        self.draw_lines(['', self.sensor.getLabel(), '', self.sensor.read()], valX)
         
-        for sensor in self.sensor.generalConfiguration.sensors:
             
-#            pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, 0, buttonWidth, buttonHeight), 1)
-#            self.draw_lines(['', 'Temp. Toit', '', '38.4'], valX)
-        
-#            valX += buttonWidth
     
 
     #==========================================================================
@@ -61,11 +58,12 @@ class Button:
             textImage = font.render(element, 1, [255,255,255])
             
             
-#            position[0] = positionIni[0] + int((self.get_width() - textImage.get_rect().width) / 2)
+            position[0] = position[0] + int((self.get_width() - textImage.get_rect().width) / 2)
             
             # Pastes the image on the screen. The upper left corner is at the position 100, 200
             screen.blit(textImage, position)  
 
+            position[0] = x
             position[1] += 20
 
 

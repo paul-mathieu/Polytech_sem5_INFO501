@@ -226,14 +226,14 @@ class Emoticon:
             
             coordArc[1] = coordCentre[0] + self.mouthMaxHeight
             coordArc[3] = heightMouth
-            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi/10, math.pi - math.pi/10)
+            pygame.draw.arc(self.generalConfiguration.screen, [255,255,255], coordArc, math.pi/10, math.pi - math.pi/10)
         
         
         else:
             
             coordArc[1] = coordCentre[0] - heightMouth + self.mouthMaxHeight
             coordArc[3] = heightMouth
-            pygame.draw.arc(self.generalConfiguration.screen, [0,0,0], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
+            pygame.draw.arc(self.generalConfiguration.screen, [255,255,255], coordArc, math.pi+math.pi/10, 2 * math.pi - math.pi/10)
         
         
 #        print(self.setEmoticonParameters(size).eyeLeftPosition)

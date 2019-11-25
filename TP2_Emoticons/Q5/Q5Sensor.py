@@ -109,7 +109,7 @@ class Sensor:
         
 
     # Draws the button for this sensor
-    def drawButton(self):
-        self.button.draw()
+    def drawButton(self, valX):
+        self.button.draw(valX)
     
     

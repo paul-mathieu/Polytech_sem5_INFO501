@@ -51,8 +51,15 @@ def main():
             generalConfiguration.draw()
             
             generalConfiguration.display()
-                                  
+            
+#            print(str(generalConfiguration.positionToSensorId(pygame.mouse.get_pos())))         
+#            print(str(generalConfiguration.maxButtonsPerLine()))
+            print(str(generalConfiguration.buttonsCountOnLine(1)))
+            
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            
+#            print(generalConfiguration.selectedSensor)
+            
             # Checks if the display of a new sensor is required
             generalConfiguration.checkIfSensorChanged(event.pos)
                 

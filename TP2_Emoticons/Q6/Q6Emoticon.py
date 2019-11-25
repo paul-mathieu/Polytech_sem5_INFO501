@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: lfoul
+@author: MATHIEU - FANTON
 """
 
 import pygame
@@ -38,13 +38,17 @@ class Emoticon:
         
         x, y = position
         t_emo = self.sensor.generalConfiguration.emoticonSize
-        t_bout= self.sensor.generalConfiguration.buttonHeight
-        t_bord=self.sensor.generalConfiguration.emoticonBorder      
-        t_ecran =self.sensor.generalConfiguration.screenWidth
+        t_bout = self.sensor.generalConfiguration.buttonHeight
+        t_bord = self.sensor.generalConfiguration.emoticonBorder      
+        t_ecran = self.sensor.generalConfiguration.screenWidth
+        
+        nbLines = self.sensor.generalConfiguration.sensors[len(self.sensor.generalConfiguration.sensors) - 1].coordMatrix()[0]
+        
+#        print(str(self.sensor.generalConfiguration.sensors[len(self.sensor.generalConfiguration.sensors) - 1].coordMatrix()[1]))
         
         #position prime
-        new_y = t_bout+t_bord+(t_emo//2)-y
-        new_x = x+(t_ecran//2)
+        new_y = t_bout * (nbLines + 1) + t_bord + (t_emo // 2) - y
+        new_x = x + (t_ecran // 2)
 
         
         return [new_x, new_y]

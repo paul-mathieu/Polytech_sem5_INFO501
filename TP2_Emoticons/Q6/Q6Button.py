@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: MATHIEU
+@author: MATHIEU - FANTON
 """
 
 
@@ -21,11 +21,12 @@ class Button:
     #==========================================================================
  
 
-    def draw(self, valX): 
+    def draw(self, valX, valY): 
         
         # depth of the line
-        if self.sensor.getSensorId == self.sensor.generalConfiguration.selectedSensor:
-            depthLine = 10
+        if self.sensor.isSelected():
+#            print(self.sensor.coordMatrix())
+            depthLine = 3            
         else:
             depthLine = 1
         
@@ -35,14 +36,15 @@ class Button:
         #first pos = wScreen / 2 - ( len(sensor) * wButton ) / 2
         buttonWidth = self.sensor.generalConfiguration.buttonWidth
         buttonHeight = self.sensor.generalConfiguration.buttonHeight
+        
 #        print(str(buttonWidth))
         
 #        valX = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * buttonWidth) / 2
         
 #        print(str(valX))
         
-        pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, 0, buttonWidth, buttonHeight), depthLine)
-        self.draw_lines(['', self.sensor.getLabel(), '', self.sensor.read()], valX)
+        pygame.draw.rect(self.sensor.generalConfiguration.screen, (255,255,255), (valX, valY, buttonWidth, buttonHeight), depthLine)
+        self.draw_lines(['', self.sensor.getLabel(), '', self.sensor.read()], valX, valY)
         
             
     
@@ -52,13 +54,14 @@ class Button:
     #==========================================================================
  
 
-    def draw_lines(self, listValues, x): 
+    def draw_lines(self, listValues, x, y): 
         
         screen = pygame.display.get_surface()
         # Creates the font
         font = pygame.font.Font(None, 15)
         
-        position = [x, 1]
+        position = [x, y]
+
         for element in listValues:
             # Creates the text image containing « This is a test » written in white
             textImage = font.render(element, 1, [255,255,255])
@@ -80,14 +83,14 @@ class Button:
     #==========================================================================
 
     def getPosition(self):
-        
+                
         xIni = self.sensor.generalConfiguration.screenWidth / 2 - (len(self.sensor.generalConfiguration.sensors) * self.sensor.generalConfiguration.buttonWidth) / 2
-        x =  xIni + self.sensor.generalConfiguration.sensors.index(self.sensor) * self.sensor.generalConfiguration.buttonWidth
-        
-        xLeftTop = x
-        yLeftTop = 1
-        xRightBottom = x + self.sensor.generalConfiguration.buttonWidth
-        yRightBottom = 1 + self.sensor.generalConfiguration.buttonHeight
+        yIni = 1
+                
+        xLeftTop = xIni + (self.getButtonColumn()+2) * self.sensor.generalConfiguration.buttonWidth
+        yLeftTop = yIni + self.getButtonLine() * self.sensor.generalConfiguration.buttonHeight
+        xRightBottom = xLeftTop + self.sensor.generalConfiguration.buttonWidth
+        yRightBottom = yLeftTop + self.sensor.generalConfiguration.buttonHeight
         
         return [xLeftTop, yLeftTop, xRightBottom, yRightBottom]
   
@@ -139,7 +142,7 @@ class Button:
             
             n -= nMax
         
-        return n + 1
+        return n
     
     
     

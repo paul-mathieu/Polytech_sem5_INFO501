@@ -220,7 +220,7 @@ class Emoticon:
         
         #draw mouth
         
-        print(str(coordArc[1]))
+#        print(str(coordArc[1]))
         
         #if line
         if -.15 < x < .15:

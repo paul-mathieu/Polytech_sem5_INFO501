@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 16 19:47:50 2017
 
-@author: lfoul
+@author: MATHIEU - FANTON
 """
 
 import http
@@ -109,15 +109,18 @@ class Sensor:
 #        print(str(self.sensorId))
 
     # Draws the button for this sensor
-    def drawButton(self, valX):
-        self.button.draw(valX)
+    def drawButton(self, valX, valY):
+        self.button.draw(valX, valY)
         
     
     # Check if this sensor is selected
     def isSelected(self):
-        
+        return self.generalConfiguration.selectedSensor == self.sensorId
     
     
+    # Return coord in the matrix
+    def coordMatrix(self):
+        return self.button.getButtonLine(), self.button.getButtonColumn()
 
         
         

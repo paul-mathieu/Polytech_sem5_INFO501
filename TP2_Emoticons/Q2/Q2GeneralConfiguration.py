@@ -27,7 +27,7 @@ class GeneralConfiguration:
         
         # Parameters for the emoticons        
         self.emoticonSize = 500
-        self.emoticonBorder = 200 
+        self.emoticonBorder = 50 
         
         # Parameters for the buttons
         self.buttonWidth = 150
